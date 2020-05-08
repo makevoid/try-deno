@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  app:
+    image: makevoid/try-deno
+    build:
+      context: "."
+    ports:
+      - 80:8080
