@@ -6,22 +6,53 @@ import {
   contentType,
 } from "https://denopkg.com/syumai/dinatra@0.12.0/mod.ts"
 
+
+// // get block number via curl (and jq):
+// read res <<< $(curl -s -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' -H "Content-Type: application/json" "https://main-rpc.linkpool.io" | jq -r .result) && echo $(($res))
+
 const ethRpcHost = "https://main-rpc.linkpool.io"
-const msg = {
-  method: "eth_blockNumber",
-  id: 1,
-  params: [],
-  jsonrpc: "2.0",
+
+const rpcCall = async ({method, params}) => {
+  const msg = {
+    // method: "eth_blockNumber",
+    method: method,
+    id: 1,
+    // params: [],
+    params: params || [],
+    jsonrpc: "2.0",
+  }
+
+  let resp = await fetch(ethRpcHost, {
+      method: 'POST',
+      body: JSON.stringify(msg),
+      keepalive: true, // ;)
+      headers: {
+       'Content-Type': 'application/json',
+      },
+    })
+
+  return resp
 }
 
-let res = await fetch(ethRpcHost, {
-    method: 'POST',
-    body: JSON.stringify(msg),
-    keepalive: true,
-  })
+const getBlockNum = async () => {
+  let resp = await rpcCall({ method: "eth_blockNumber" })
 
-// res = await res.json()
-console.log("JSON:", res)
+  try {
+    resp = await resp.json()
+  } catch(err) {
+    console.error(`Error: `)
+  }
+  // console.log("JSON:", resp)
+  resp = resp.result
+  console.log("result:", resp, "(hex)")
+  resp = parseInt(resp, 16)
+  return resp
+}
+
+const resp = await getBlockNum()
+console.log("block number:", resp)
+
+
 Deno.exit()
 
 app(
