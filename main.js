@@ -85,7 +85,7 @@ app(
     console.log("block number:", resp)
     return `block number: ${resp}`
   }),
-  get("/block/:blockNum", async ({ params }) => {
+  get("/blocks/:blockNum", async ({ params }) => {
     console.log("blockNum:", params.blockNum)
     let { blockNum } = params
     blockNum = intToHex(blockNum)
@@ -94,11 +94,8 @@ app(
     console.log("block:", resp)
     return `block: ${JSON.stringify(resp)}`
   }),
-  get("/hello", () => "hello"),
-  get("/hello2", async () => "hello"),
-  get("/hello/:id", ({ params }) => params.id),
-  get("/error", () => [500, "an error has occured"]),
-  get("/foo", () => redirect("/hello", 302)),
+  get("/error", () => [500, "this is a sample error"]),
+  get("/redirect", () => redirect("/", 302)), // sample redirect
   get("/info", () => [
     200,
     contentType("json"),
