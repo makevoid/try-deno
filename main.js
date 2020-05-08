@@ -39,6 +39,8 @@ const getBlockNum = async () => {
     resp = await resp.json()
   } catch(err) {
     console.error(`Error: `)
+    console.error(err)
+    throw new Error("RPCErrors_BlockNumber")
   }
   resp = resp.result
   console.log("result:", resp, "(hex)")
