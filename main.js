@@ -51,12 +51,14 @@ const getBlockNum = async () => {
 
 const resp = await getBlockNum()
 console.log("block number:", resp)
-
-
-Deno.exit()
+// Deno.exit()
 
 app(
-  get("/", () => "hello"),
+  get("/", async () => {
+    const resp = await getBlockNum()
+    console.log("block number:", resp)
+    return `block number: ${resp}`
+  }),
   get("/hello", () => "hello"),
   get("/hello2", async () => "hello"),
   get("/hello/:id", ({ params }) => params.id),
