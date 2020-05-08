@@ -6,7 +6,6 @@ import {
   contentType,
 } from "https://denopkg.com/syumai/dinatra@0.12.0/mod.ts"
 
-
 // // get block number via curl (and jq):
 // read res <<< $(curl -s -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' -H "Content-Type: application/json" "https://main-rpc.linkpool.io" | jq -r .result) && echo $(($res))
 
@@ -42,7 +41,7 @@ const getBlockNum = async () => {
   } catch(err) {
     console.error(`Error: `)
   }
-  // console.log("JSON:", resp)
+
   resp = resp.result
   console.log("result:", resp, "(hex)")
   resp = parseInt(resp, 16)
