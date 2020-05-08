@@ -35,13 +35,11 @@ const rpcCall = async ({method, params}) => {
 
 const getBlockNum = async () => {
   let resp = await rpcCall({ method: "eth_blockNumber" })
-
   try {
     resp = await resp.json()
   } catch(err) {
     console.error(`Error: `)
   }
-
   resp = resp.result
   console.log("result:", resp, "(hex)")
   resp = parseInt(resp, 16)
