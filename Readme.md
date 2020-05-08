@@ -1,6 +1,6 @@
 # try-deno
 
-Trying out Deno's Dinatra (using JS)
+Trying out Deno's Dinatra (using JS) - task: get the latest mainnet eth block number
 
 ### run
 
