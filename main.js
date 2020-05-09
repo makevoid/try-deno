@@ -15,15 +15,15 @@ app(
     console.log("blockNum:", blockNum)
     blockNum = intToHex(blockNum)
     console.log("blockNum:", blockNum, "(hex)")
-    const resp = await getBlock({ blockNum })
-    return `block: ${JSON.stringify(resp)}`
+    const block = await getBlock({ blockNum })
+    return JSON.stringify(block)
   }),
+  get("/blocks", () => redirect("/", 302)),
   get("/error", () => [500, "this is a sample error"]),
-  get("/redirect", () => redirect("/", 302)), // sample redirect
   get("/info", () => [
     200,
     contentType("json"),
-    JSON.stringify({ app: "dinatra", version: "0.0.1" }),
+    JSON.stringify({ app: "dinatra eth blocks app", version: "0.7.0" }),
   ]),
 )
 
