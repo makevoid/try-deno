@@ -11,12 +11,11 @@ app(
     return `block number: ${resp}`
   }),
   get("/blocks/:blockNum", async ({ params }) => {
-    console.log("blockNum:", params.blockNum)
     let { blockNum } = params
-    blockNum = intToHex(blockNum)
     console.log("blockNum:", blockNum)
+    blockNum = intToHex(blockNum)
+    console.log("blockNum:", blockNum, "(hex)")
     const resp = await getBlock({ blockNum })
-    console.log("block:", resp)
     return `block: ${JSON.stringify(resp)}`
   }),
   get("/error", () => [500, "this is a sample error"]),

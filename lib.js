@@ -29,9 +29,8 @@ const blockByNumber = async (host, { blockNum }) => {
   } catch(err) {
     throwError(err, "RPCErrors_GetBlock")
   }
-  console.log("resp:", resp)
   resp = resp.result
-  console.log("result:", resp)
+  console.log("got block ", blockNum, " - hash:", resp.hash)
   return resp
 }
 
