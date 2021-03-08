@@ -1,6 +1,16 @@
 # try-deno
 
-Trying out Deno's Dinatra (using JS) - task: get the latest mainnet eth block number
+Trying out Deno's Dinatra (using JS)
+
+This is a sample API that exposes an ethereum blockchain API (you can use it to read blocks information).
+
+
+### Dependencies
+
+- A Geth (go-ethereum) full node, exposing local rpc to localhost
+
+The app queries a Geth / Ethereum node via its JSON RPC API.
+
 
 ### run
 
